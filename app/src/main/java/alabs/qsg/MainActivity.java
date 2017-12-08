@@ -1,5 +1,17 @@
 package alabs.qsg;
 
+
+/* TODO: Uncomment these when ready to use
+
+import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
+import com.mongodb.ServerAddress;
+import com.mongodb.MongoCredential;
+import com.mongodb.MongoClientOptions;
+
+
+import java.util.Arrays;
+*/
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -27,6 +39,8 @@ import java.util.Iterator;
 
 import javax.net.ssl.HttpsURLConnection;
 
+// TODO: Add this potentially ------  MongoClient mongoClient = new MongoClient( "mongodb.sdrc.org" , 3000 );
+
 public class MainActivity extends AppCompatActivity {
 
     String scannedData;
@@ -36,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-       final Activity activity =this;
+        final Activity activity =this;
         scanBtn = (Button)findViewById(R.id.scan_btn);
 
         scanBtn.setOnClickListener(new View.OnClickListener() {
@@ -62,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
             scannedData = result.getContents();
             if (scannedData != null) {
                 // Here we need to handle scanned data...
-               new SendRequest().execute();
+                new SendRequest().execute();
 
 
             }else {
@@ -82,14 +96,14 @@ public class MainActivity extends AppCompatActivity {
 
             try{
 
-                //Enter script URL Here
+                // TODO: Try and catch for scanning into mongo here.
                 URL url = new URL("Your App Script Web App URL");
 
                 JSONObject postDataParams = new JSONObject();
 
                 //Passing scanned code as parameter
 
-               postDataParams.put("sdata",scannedData);
+                postDataParams.put("sdata",scannedData);
 
 
                 Log.e("params",postDataParams.toString());
